@@ -1,0 +1,80 @@
+<div *ngIf="orderState$ | async as state">
+
+  <form class="mt-10" nz-form [formGroup]="orderForm">
+
+    <nz-form-item  *ngIf="'id' | isOrderFieldVisible: state">
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="id">Paid Order ID</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <span>{{state.order.id}}</span>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item *ngIf="'status' | isOrderFieldVisible: state">
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="orderStatus">Order Status</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <nz-select formControlName="status" nzAllowClear nzPlaceHolder="Select status">
+          <nz-option *ngFor="let o of dropdowns.statuses" [nzValue]="o" [nzLabel]="o"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item  *ngIf="'type' | isOrderFieldVisible: state">
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="type">Order Type</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <nz-select formControlName="type" nzAllowClear nzPlaceHolder="Select Order Type">
+          <nz-option *ngFor="let o of dropdowns.types" [nzValue]="o" [nzLabel]="o"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item  *ngIf="'monthlyAmount' | isOrderFieldVisible: state">
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="monthlyAmount">Monthly Amount</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input formControlName="monthlyAmount" id="monthlyAmount" type="number"/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item  *ngIf="'totalCost' | isOrderFieldVisible: state">
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="totalCost">Total Cost</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input formControlName="totalCost" id="totalCost" type="number"/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item  *ngIf="'productId' | isOrderFieldVisible: state">
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="productId">Product</nz-form-label>
+      <nz-form-control  [nzSm]="14" [nzXs]="24">
+        <nz-select formControlName="productId" nzAllowClear nzPlaceHolder="Select Product">
+          <nz-option *ngFor="let o of dropdowns.products" [nzValue]="o.id" [nzLabel]="o.name"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item  *ngIf="'customerId' | isOrderFieldVisible: state">
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="customerId">Customer</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <nz-select formControlName="customerId" nzAllowClear nzPlaceHolder="Select Customer">
+          <nz-option *ngFor="let o of dropdowns.customers" [nzValue]="o.id" [nzLabel]="o.name"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item  *ngIf="'tax' | isOrderFieldVisible: state">
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="tax">Tax</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input formControlName="tax" id="tax" type="number"/>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item *ngIf="'paymentMethod' | isOrderFieldVisible: state">
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="paymentMethod">Payment Method</nz-form-label>
+      <nz-form-control  [nzSm]="14" [nzXs]="24">
+        <nz-select formControlName="paymentMethod" nzAllowClear nzPlaceHolder="Select Payment method">
+          <nz-option *ngFor="let o of dropdowns.paymentMethods" [nzValue]="o" [nzLabel]="o"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+
+  </form>
+
+</div>
