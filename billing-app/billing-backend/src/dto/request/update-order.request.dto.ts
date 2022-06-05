@@ -1,4 +1,4 @@
-import { OrderStatus, OrderType } from "src/types";
+import { OrderStatus, OrderType } from 'src/types';
 
 export interface UpdateOrderDTO {
   id: string;
