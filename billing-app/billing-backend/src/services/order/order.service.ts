@@ -10,28 +10,40 @@ export class OrderService {
   async update(order: UpdateOrderDTO): Promise<SuccessResponseDTO> {
     console.log(`${this.constructor.name}.update start`);
     if (order.status >= OrderStatus.Final) {
-      await emulateAsyncProccess(
-        'validate if the customer is allowed for one-time payment',
-        order,
-      );
-      await emulateAsyncProccess(
-        'calculate up to date tax according to price',
-        order,
-      );
+      await this.validateIfTheCustomerIsAllowedForOTP(order);
+      await this.calculateUpToDateTaxAccordingToPrice(order);
     }
     if (
       (order.status === OrderStatus.Aprooved ||
         order.status === OrderStatus.Paid) &&
       order.totalCost >= HIGH_COST_BARRIER_USD
     ) {
-      await emulateAsyncProccess(
-        'execute High cost order business logic',
-        order,
-      );
+      await this.executeHighCostOrderBL(order);
     }
     return {
       success: true,
     };
   }
 
+  private async validateIfTheCustomerIsAllowedForOTP(
+    order: UpdateOrderDTO,
+  ): Promise<void> {
+    await emulateAsyncProccess(
+      'validate if the customer is allowed for one-time payment',
+      order,
+    );
+  }
+
+  private async calculateUpToDateTaxAccordingToPrice(
+    order: UpdateOrderDTO,
+  ): Promise<void> {
+    await emulateAsyncProccess(
+      'calculate up to date tax according to price',
+      order,
+    );
+  }
+
+  private async executeHighCostOrderBL(order: UpdateOrderDTO): Promise<void> {
+    await emulateAsyncProccess('execute High cost order business logic', order);
+  }
 }
