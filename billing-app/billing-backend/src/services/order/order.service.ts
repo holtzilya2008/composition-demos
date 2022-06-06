@@ -9,6 +9,9 @@ import { HIGH_COST_BARRIER_USD } from './constants';
 export class OrderService {
   async update(order: UpdateOrderDTO): Promise<SuccessResponseDTO> {
     console.log(`${this.constructor.name}.update start`);
+    if (order.status >= OrderStatus.Final) {
+      await this.validateCustomer(order);
+    }
     switch (order.type) {
       case OrderType.OTP:
         if (order.status >= OrderStatus.Final) {
@@ -28,9 +31,23 @@ export class OrderService {
           await this.validateIfTheProductIsAllowedForSubscription(order);
           await this.executeSomeSpeialValidationForSubscription(order);
         }
-        if (order.status >= OrderStatus.Final) {
+        if (order.status >= OrderStatus.Aprooved) {
           await this.updateNextOrdersInSequence(order);
         }
+        break;
+      case OrderType.Splitted:
+        if (order.status >= OrderStatus.Final) {
+          await this.checkIfProductPriceIsAllowedForSplit(order);
+          await this.checkIfCustomerAllowdTheSpecifiedNumberOfPayments(order);
+          await this.calculateUpToDateTaxAccordingToPrice(order);
+        }
+        if (order.status >= OrderStatus.Aprooved) {
+          if (order.totalCost >= HIGH_COST_BARRIER_USD) {
+            await this.executeHighCostOrderBL(order);
+          }
+          await this.updateNextOrdersInSequence(order);
+        }
+        break;
     }
 
     return {
@@ -82,5 +99,27 @@ export class OrderService {
     order: UpdateOrderDTO,
   ): Promise<void> {
     await emulateAsyncProccess('should update next orders in sequence', order);
+  }
+
+  private async checkIfProductPriceIsAllowedForSplit(
+    order: UpdateOrderDTO,
+  ): Promise<void> {
+    await emulateAsyncProccess(
+      'Check if product price is allowed for split',
+      order,
+    );
+  }
+
+  private async checkIfCustomerAllowdTheSpecifiedNumberOfPayments(
+    order: UpdateOrderDTO,
+  ): Promise<void> {
+    await emulateAsyncProccess(
+      'Check if customer allowd the specified number of payments',
+      order,
+    );
+  }
+
+  private async validateCustomer(order: UpdateOrderDTO): Promise<void> {
+    await emulateAsyncProccess('Validate customer', order);
   }
 }
