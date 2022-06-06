@@ -1,13 +1,20 @@
-import { ChainHandler } from "src/core";
-import { UpdateOrderDTO } from "src/dto";
-import { UpdateOTPChainHandler } from "./otp-update.handler";
-import { SubscriptionUpdateHandler } from "./subscription-update.handler";
+import { ChainHandler } from 'src/core';
+import { UpdateOrderDTO } from 'src/dto';
+import { CustomerValidationHandler } from './customer-validation.handler';
+import { UpdateOTPChainHandler } from './otp-update.handler';
+import { SplittedUpdateHandler } from './splitted-update-handler';
+import { SubscriptionUpdateHandler } from './subscription-update.handler';
 
+const customerValidationHandler = new CustomerValidationHandler();
 const otpUpdateHandler = new UpdateOTPChainHandler();
 const subscriptionUpdateHandler = new SubscriptionUpdateHandler();
+const splittedUpdateHandler = new SplittedUpdateHandler();
 
 export function getUpdateOrderChain(): ChainHandler<UpdateOrderDTO> {
-  const chain = otpUpdateHandler;
-  chain.setNext(subscriptionUpdateHandler);
+  const chain = customerValidationHandler;
+  chain
+    .setNext(otpUpdateHandler)
+    .setNext(subscriptionUpdateHandler)
+    .setNext(splittedUpdateHandler);
   return chain;
 }
