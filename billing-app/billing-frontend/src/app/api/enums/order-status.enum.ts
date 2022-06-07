@@ -1,7 +1,7 @@
 export enum OrderStatus {
-  Draft = 'Draft',
-  Final = 'Final',
-  Aprooved = 'Aprooved',
-  Paid = 'Paid',
-  Delivered = 'Delivered'
+  Draft = 0,
+  Final = 1,
+  Aprooved = 2,
+  Paid = 3,
+  Delivered = 4,
 }
