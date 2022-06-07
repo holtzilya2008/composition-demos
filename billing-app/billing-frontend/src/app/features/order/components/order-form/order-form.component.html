@@ -1,6 +1,6 @@
 <div *ngIf="orderState$ | async as state">
 
-  <form class="mt-10" nz-form [formGroup]="orderForm">
+  <form class="mt-10" nz-form [formGroup]="orderForm" (ngSubmit)="submitForm()">
 
     <nz-form-item  *ngIf="'id' | isOrderFieldVisible: state">
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="id">Paid Order ID</nz-form-label>
@@ -74,7 +74,11 @@
         </nz-select>
       </nz-form-control>
     </nz-form-item>
-
+    <nz-form-item>
+      <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 16, offset: 8 }">
+        <button nz-button nzType="primary">Update</button>
+      </nz-form-control>
+    </nz-form-item>
   </form>
 
 </div>

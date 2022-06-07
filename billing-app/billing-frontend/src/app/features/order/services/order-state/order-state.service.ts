@@ -3,14 +3,18 @@ import { BehaviorSubject, Observable, timer } from 'rxjs';
 import { OrdersMock } from '../../mocks/order-mocks';
 import { Order, OrderState } from '../../types';
 import { map, switchMap, tap } from 'rxjs/operators';
+import { OrderApiService } from 'src/app/api/services/order-api.service';
 
 @Injectable()
 export class OrderStateService {
 
+  private isBusySubject = new BehaviorSubject<boolean>(false);
+  isBusy$ = this.isBusySubject.asObservable();
+
   private orderState!: BehaviorSubject<OrderState>;
   private isInitialized: boolean = false;
 
-  constructor() { }
+  constructor(private readonly apiService: OrderApiService) { }
 
   initState(id: string): Observable<OrderState> {
     return this.getOrderFromApi(id).pipe(
@@ -45,6 +49,14 @@ export class OrderStateService {
     return timer(200).pipe(
       map(() => order)
     );
+  }
+
+  submitState(): void {
+    const order = this.orderState.value.order;
+    this.isBusySubject.next(true);
+    this.apiService.update(order).subscribe(() => {
+      this.isBusySubject.next(false);
+    })
   }
 
 }

@@ -1,6 +1,4 @@
-import { OrderStatus } from "./enums/order-status.enum";
-import { OrderType } from "./enums/order-type.enum"
-import { PaymentMethod } from "./enums/payment-method.enum";
+import { OrderStatus, OrderType, PaymentMethod } from "../enums";
 
 export interface Order {
   id: string;

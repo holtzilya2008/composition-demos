@@ -57,6 +57,10 @@ export class OrderFormComponent implements OnInit, OnDestroy {
     });
   }
 
+  submitForm(): void {
+    this.stateService.submitState();
+  }
+
   ngOnDestroy(): void {
     this.cleanup$.next(true);
     this.cleanup$.unsubscribe();
