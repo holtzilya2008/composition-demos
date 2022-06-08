@@ -1,6 +1,11 @@
 <div *ngIf="orderState$ | async as state">
   <form class="mt-10" nz-form [formGroup]="orderForm" (ngSubmit)="submitForm()">
-    <nz-form-item>
+    <nz-form-item
+      *ngIf="
+        state.order.status === OrderStatus.Paid ||
+        state.order.status === OrderStatus.Delivered
+      "
+    >
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="id"
         >Paid Order ID</nz-form-label
       >
@@ -28,7 +33,12 @@
       </nz-form-control>
     </nz-form-item>
 
-    <nz-form-item>
+    <nz-form-item
+      *ngIf="
+        state.order.status === OrderStatus.Draft ||
+        state.order.status === OrderStatus.Final
+      "
+    >
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="type"
         >Order Type</nz-form-label
       >
@@ -47,7 +57,12 @@
       </nz-form-control>
     </nz-form-item>
 
-    <nz-form-item>
+    <nz-form-item
+      *ngIf="
+        state.order.status === OrderStatus.Draft ||
+        state.order.status === OrderStatus.Final
+      "
+    >
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="monthlyAmount"
         >Monthly Amount</nz-form-label
       >
@@ -61,7 +76,12 @@
       </nz-form-control>
     </nz-form-item>
 
-    <nz-form-item>
+    <nz-form-item
+      *ngIf="
+        state.order.status === OrderStatus.Draft ||
+        state.order.status === OrderStatus.Final
+      "
+    >
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="totalCost"
         >Total Cost</nz-form-label
       >
@@ -75,7 +95,14 @@
       </nz-form-control>
     </nz-form-item>
 
-    <nz-form-item>
+    <nz-form-item
+      *ngIf="
+        state.order.status === OrderStatus.Draft ||
+        state.order.status === OrderStatus.Final ||
+        state.order.status === OrderStatus.Aprooved ||
+        state.order.status === OrderStatus.Paid
+      "
+    >
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="productId"
         >Product</nz-form-label
       >
@@ -113,14 +140,14 @@
       </nz-form-control>
     </nz-form-item>
 
-    <nz-form-item>
+    <nz-form-item *ngIf="state.order.status === OrderStatus.Aprooved">
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="tax">Tax</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24">
         <input nz-input formControlName="tax" id="tax" type="number" />
       </nz-form-control>
     </nz-form-item>
 
-    <nz-form-item>
+    <nz-form-item *ngIf="state.order.status === OrderStatus.Aprooved">
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="paymentMethod"
         >Payment Method</nz-form-label
       >
