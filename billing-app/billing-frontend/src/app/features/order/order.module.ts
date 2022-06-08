@@ -5,12 +5,14 @@ import { OrderFormComponent } from './components/order-form/order-form.component
 import { VendorModule } from 'src/app/common/vendor.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { OrderStatusPipe } from './pipes/order-status.pipe';
+import { TaxRequiredPipe } from './pipes/tax-required.pipe';
 
 @NgModule({
   declarations: [
     OrderDetailsComponent,
     OrderFormComponent,
-    OrderStatusPipe
+    OrderStatusPipe,
+    TaxRequiredPipe
   ],
   imports: [
     CommonModule,

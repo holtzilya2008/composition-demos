@@ -143,7 +143,12 @@
       </nz-form-control>
     </nz-form-item>
 
-    <nz-form-item *ngIf="state.order.status === OrderStatus.Aprooved">
+    <nz-form-item
+      *ngIf="
+        state.order.status === OrderStatus.Aprooved &&
+        (state.order.customerId | isTaxRequired)
+      "
+    >
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="tax">Tax</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24">
         <input nz-input formControlName="tax" id="tax" type="number" />
