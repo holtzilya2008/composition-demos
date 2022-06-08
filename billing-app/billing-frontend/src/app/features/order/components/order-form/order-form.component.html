@@ -59,8 +59,10 @@
 
     <nz-form-item
       *ngIf="
-        state.order.status === OrderStatus.Draft ||
-        state.order.status === OrderStatus.Final
+        (state.order.status === OrderStatus.Draft ||
+          state.order.status === OrderStatus.Final) &&
+        (state.order.type === OrderType.Subscription ||
+          state.order.type === OrderType.Splitted)
       "
     >
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="monthlyAmount"
@@ -78,8 +80,9 @@
 
     <nz-form-item
       *ngIf="
-        state.order.status === OrderStatus.Draft ||
-        state.order.status === OrderStatus.Final
+        (state.order.status === OrderStatus.Draft ||
+          state.order.status === OrderStatus.Final) &&
+        state.order.type !== OrderType.Subscription
       "
     >
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="totalCost"

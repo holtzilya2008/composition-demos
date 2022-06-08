@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Observable, Subject, take, takeUntil } from 'rxjs';
+import { Observable, Subject, Subscription, take, takeUntil } from 'rxjs';
 import { DropdownService } from 'src/app/api/services/dropdown.service';
 import { OrderDetailsDropdowns } from '../../constants';
 import { OrderStateService } from '../../services/order-state/order-state.service';
-import { OrderState, OrderStatus } from '../../types';
+import { OrderState, OrderStatus, OrderType } from '../../types';
 
 
 @Component({
@@ -15,6 +15,7 @@ import { OrderState, OrderStatus } from '../../types';
 })
 export class OrderFormComponent implements OnInit, OnDestroy {
   OrderStatus = OrderStatus;
+  OrderType = OrderType;
 
   private orderId = 'f21cd945-0c1f-41f5-bb0b-e742a0e91abb';
   private cleanup$ = new Subject<boolean>();
