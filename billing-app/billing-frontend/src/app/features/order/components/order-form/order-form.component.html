@@ -102,7 +102,7 @@
       *ngIf="
         state.order.status === OrderStatus.Draft ||
         state.order.status === OrderStatus.Final ||
-        state.order.status === OrderStatus.Aprooved ||
+        state.order.status === OrderStatus.Approved ||
         state.order.status === OrderStatus.Paid
       "
     >
@@ -145,7 +145,7 @@
 
     <nz-form-item
       *ngIf="
-        state.order.status === OrderStatus.Aprooved &&
+        state.order.status === OrderStatus.Approved &&
         (state.order.customerId | isTaxRequired)
       "
     >
@@ -155,7 +155,7 @@
       </nz-form-control>
     </nz-form-item>
 
-    <nz-form-item *ngIf="state.order.status === OrderStatus.Aprooved">
+    <nz-form-item *ngIf="state.order.status === OrderStatus.Approved">
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="paymentMethod"
         >Payment Method</nz-form-label
       >
