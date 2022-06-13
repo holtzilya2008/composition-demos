@@ -1,8 +1,8 @@
-import { BaseChainHandler } from "src/core";
-import { UpdateOrderDTO } from "src/dto";
-import { OrderStatus } from "src/types";
-import { emulateAsyncProcess } from "src/utils";
-import { calculateUpToDateTaxAccordingToPrice } from "../../utils";
+import { BaseChainHandler } from 'src/core';
+import { UpdateOrderDTO } from 'src/dto';
+import { OrderStatus } from 'src/types';
+import { emulateAsyncProcess } from 'src/utils';
+import { calculateUpToDateTaxAccordingToPrice } from '../../utils';
 
 export class OtpFinalHandler extends BaseChainHandler<UpdateOrderDTO> {
   protected isResponsible(context: UpdateOrderDTO): boolean {
@@ -22,6 +22,4 @@ export class OtpFinalHandler extends BaseChainHandler<UpdateOrderDTO> {
       order,
     );
   }
-
-
 }

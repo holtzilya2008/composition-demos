@@ -12,7 +12,7 @@ export abstract class BaseChainHandler<T> implements ChainHandler<T> {
     return handler;
   }
 
-  private async handleNext(context: T): Promise<void>{
+  private async handleNext(context: T): Promise<void> {
     if (this.next) {
       await this.next.handle(context);
     }
@@ -27,5 +27,4 @@ export abstract class BaseChainHandler<T> implements ChainHandler<T> {
     await this.handleConcrete(context);
     await this.handleNext(context);
   }
-
 }

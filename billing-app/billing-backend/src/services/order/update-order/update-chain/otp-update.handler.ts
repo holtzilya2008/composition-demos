@@ -4,7 +4,6 @@ import { OrderType } from 'src/types';
 import { otpUpdateChainFactory } from './otp-chain';
 
 export class UpdateOTPChainHandler extends BaseChainHandler<UpdateOrderDTO> {
-
   private otpUpdateChain = otpUpdateChainFactory();
 
   protected isResponsible(context: UpdateOrderDTO): boolean {
@@ -14,6 +13,4 @@ export class UpdateOTPChainHandler extends BaseChainHandler<UpdateOrderDTO> {
   protected async handleConcrete(context: UpdateOrderDTO): Promise<void> {
     await this.otpUpdateChain.handle(context);
   }
-
-
 }

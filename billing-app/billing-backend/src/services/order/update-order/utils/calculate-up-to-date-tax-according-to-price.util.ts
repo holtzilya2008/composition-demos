@@ -1,5 +1,5 @@
-import { UpdateOrderDTO } from "src/dto";
-import { emulateAsyncProcess } from "src/utils";
+import { UpdateOrderDTO } from 'src/dto';
+import { emulateAsyncProcess } from 'src/utils';
 
 export async function calculateUpToDateTaxAccordingToPrice(
   order: UpdateOrderDTO,
