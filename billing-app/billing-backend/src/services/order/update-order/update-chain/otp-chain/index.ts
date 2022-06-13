@@ -6,7 +6,7 @@ import { OtpHighCostHandler } from './otp-high-cost.handler';
 const finalHandler = new OtpFinalHandler();
 const highCostHandler = new OtpHighCostHandler();
 
-export function getOtpUpdateChain(): ChainHandler<UpdateOrderDTO> {
+export function otpUpdateChainFactory(): ChainHandler<UpdateOrderDTO> {
   const chain = finalHandler;
   chain.setNext(highCostHandler);
   return chain;

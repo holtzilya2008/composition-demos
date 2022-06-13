@@ -1,10 +1,9 @@
-import { BaseChainHandler } from "src/core";
-import { UpdateOrderDTO } from "src/dto";
-import { OrderStatus } from "src/types";
-import { emulateAsyncProccess } from "src/utils";
+import { BaseChainHandler } from 'src/core';
+import { UpdateOrderDTO } from 'src/dto';
+import { OrderStatus } from 'src/types';
+import { emulateAsyncProcess } from 'src/utils';
 
 export class CustomerValidationHandler extends BaseChainHandler<UpdateOrderDTO> {
-
   protected isResponsible(context: UpdateOrderDTO): boolean {
     return context.status >= OrderStatus.Final;
   }
@@ -14,7 +13,6 @@ export class CustomerValidationHandler extends BaseChainHandler<UpdateOrderDTO> 
   }
 
   private async validateCustomer(order: UpdateOrderDTO): Promise<void> {
-    await emulateAsyncProccess('Validate customer', order);
+    await emulateAsyncProcess('Validate customer', order);
   }
-
 }

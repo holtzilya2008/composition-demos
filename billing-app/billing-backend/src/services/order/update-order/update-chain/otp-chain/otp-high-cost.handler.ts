@@ -7,7 +7,7 @@ import { executeHighCostOrderBL } from '../../utils';
 export class OtpHighCostHandler extends BaseChainHandler<UpdateOrderDTO> {
   protected isResponsible(context: UpdateOrderDTO): boolean {
     return (
-      (context.status === OrderStatus.Aprooved ||
+      (context.status === OrderStatus.Approved ||
         context.status === OrderStatus.Paid) &&
       context.totalCost >= HIGH_COST_BARRIER_USD
     );

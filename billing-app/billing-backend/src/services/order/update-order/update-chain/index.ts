@@ -10,7 +10,7 @@ const otpUpdateHandler = new UpdateOTPChainHandler();
 const subscriptionUpdateHandler = new SubscriptionUpdateHandler();
 const splittedUpdateHandler = new SplittedUpdateHandler();
 
-export function getUpdateOrderChain(): ChainHandler<UpdateOrderDTO> {
+export function updateOrderChainFactory(): ChainHandler<UpdateOrderDTO> {
   const chain = customerValidationHandler;
   chain
     .setNext(otpUpdateHandler)

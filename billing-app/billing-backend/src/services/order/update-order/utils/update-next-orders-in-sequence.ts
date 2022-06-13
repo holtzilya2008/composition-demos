@@ -1,8 +1,8 @@
-import { UpdateOrderDTO } from "src/dto";
-import { emulateAsyncProccess } from "src/utils";
+import { UpdateOrderDTO } from 'src/dto';
+import { emulateAsyncProcess } from 'src/utils';
 
 export async function updateNextOrdersInSequence(
   order: UpdateOrderDTO,
 ): Promise<void> {
-  await emulateAsyncProccess('should update next orders in sequence', order);
+  await emulateAsyncProcess('should update next orders in sequence', order);
 }

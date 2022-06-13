@@ -1,13 +1,13 @@
-import { ChainHandler } from "src/core";
-import { UpdateOrderDTO } from "src/dto";
-import { SubscriptionAproovedHandler } from "./subscription-aprooved.handler";
-import { SubscriptionFinalHandler } from "./subscription-final.handler";
+import { ChainHandler } from 'src/core';
+import { UpdateOrderDTO } from 'src/dto';
+import { SubscriptionApprovedHandler } from './subscription-approved.handler';
+import { SubscriptionFinalHandler } from './subscription-final.handler';
 
 const finalHandler = new SubscriptionFinalHandler();
-const aproovedHandler = new SubscriptionAproovedHandler();
+const approvedHandler = new SubscriptionApprovedHandler();
 
-export function getSubscriptionUpdateChain(): ChainHandler<UpdateOrderDTO> {
+export function subscriptionUpdateChainFactory(): ChainHandler<UpdateOrderDTO> {
   const chain = finalHandler;
-  chain.setNext(aproovedHandler);
+  chain.setNext(approvedHandler);
   return chain;
 }

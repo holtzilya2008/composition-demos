@@ -1,8 +1,8 @@
-import { BaseChainHandler } from "src/core";
-import { UpdateOrderDTO } from "src/dto";
-import { OrderStatus } from "src/types";
-import { emulateAsyncProccess } from "src/utils";
-import { calculateUpToDateTaxAccordingToPrice } from "../../utils";
+import { BaseChainHandler } from 'src/core';
+import { UpdateOrderDTO } from 'src/dto';
+import { OrderStatus } from 'src/types';
+import { emulateAsyncProcess } from 'src/utils';
+import { calculateUpToDateTaxAccordingToPrice } from '../../utils';
 
 export class OtpFinalHandler extends BaseChainHandler<UpdateOrderDTO> {
   protected isResponsible(context: UpdateOrderDTO): boolean {
@@ -17,11 +17,9 @@ export class OtpFinalHandler extends BaseChainHandler<UpdateOrderDTO> {
   private async validateIfTheCustomerIsAllowedForOTP(
     order: UpdateOrderDTO,
   ): Promise<void> {
-    await emulateAsyncProccess(
+    await emulateAsyncProcess(
       'validate if the customer is allowed for one-time payment',
       order,
     );
   }
-
-
 }
