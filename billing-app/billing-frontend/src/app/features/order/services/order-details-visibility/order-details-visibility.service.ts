@@ -25,7 +25,7 @@ export class OrderDetailsVisibilityService {
       customerInfo: { taxRequired: customer?.taxRequired } ,
       fieldName,
     };
-    const result = this.engine.aggregateAllBoolean(this.rules, context);
+    const result = this.engine.evaluate(this.rules, context);
     return result;
   }
 
