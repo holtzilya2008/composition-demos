@@ -40,7 +40,7 @@ export class OrderFormComponent implements OnInit, OnDestroy {
         type: [initialOrder.type],
         totalCost: [0],
         monthlyAmount: [0],
-        status: [initialOrder.monthlyAmount],
+        status: [initialOrder.status],
         customerId: [initialOrder.customerId],
         tax: [0],
         paymentMethod: ['']
