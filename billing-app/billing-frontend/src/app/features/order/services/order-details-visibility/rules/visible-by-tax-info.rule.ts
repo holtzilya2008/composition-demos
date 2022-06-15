@@ -9,7 +9,7 @@ export class VisibleByTaxInfoRule implements Rule<OrderVisibilityContext, boolea
     return this.applicableForFields.includes(context.fieldName);
   }
 
-  execute(context: OrderVisibilityContext): boolean {
+  evaluate(context: OrderVisibilityContext): boolean {
     return !!context.customerInfo?.taxRequired;
   }
 

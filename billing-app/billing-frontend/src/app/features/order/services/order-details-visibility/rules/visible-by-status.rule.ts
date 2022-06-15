@@ -21,7 +21,7 @@ export class VisibleByStatusRule implements Rule<OrderVisibilityContext, boolean
     return this.applicableForFields.includes(context.fieldName);
   }
 
-  execute(context: OrderVisibilityContext): boolean {
+  evaluate(context: OrderVisibilityContext): boolean {
     const status = context.orderState.order.status;
     return visibleFieldsByStatusMap[status] && visibleFieldsByStatusMap[status].includes(context.fieldName);
   }

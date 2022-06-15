@@ -19,7 +19,7 @@ export class VisibleByTypeRule implements Rule<OrderVisibilityContext, boolean> 
     return this.applicableForFields.includes(context.fieldName);
   }
 
-  execute(context: OrderVisibilityContext): boolean {
+  evaluate(context: OrderVisibilityContext): boolean {
     const type = context.orderState.order.type;
     return visibleFieldsByTypeMap[type] && visibleFieldsByTypeMap[type].includes(context.fieldName);
   }
