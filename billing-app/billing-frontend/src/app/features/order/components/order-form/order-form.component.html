@@ -12,7 +12,7 @@
     <nz-form-item *ngIf="'status' | isOrderFieldVisible: state">
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="orderStatus">Order Status</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24">
-        <nz-select formControlName="status" nzAllowClear nzPlaceHolder="Select status">
+        <nz-select formControlName="status" nzPlaceHolder="Select status">
           <nz-option *ngFor="let o of dropdowns.statuses" [nzValue]="o" [nzLabel]="o | orderStatus"></nz-option>
         </nz-select>
       </nz-form-control>
@@ -21,7 +21,7 @@
     <nz-form-item  *ngIf="'type' | isOrderFieldVisible: state">
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="type">Order Type</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24">
-        <nz-select formControlName="type" nzAllowClear nzPlaceHolder="Select Order Type">
+        <nz-select formControlName="type" nzPlaceHolder="Select Order Type">
           <nz-option *ngFor="let o of dropdowns.types" [nzValue]="o" [nzLabel]="o"></nz-option>
         </nz-select>
       </nz-form-control>

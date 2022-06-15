@@ -7,15 +7,15 @@ export const CustomersMock: Customer[] = [{
 }, {
   "id": "41bfdbb9-467a-45da-b90d-dc3baaa4a4a8",
   "name": "Florinda",
-  "taxRequired": true
+  "taxRequired": false
 }, {
   "id": "d48f696c-105f-4895-b923-90ddd12a4069",
   "name": "Paddie",
-  "taxRequired": false
+  "taxRequired": true
 }, {
   "id": "0483a666-efc1-4b2b-850f-9752c45a5919",
   "name": "Loree",
-  "taxRequired": true
+  "taxRequired": false
 }, {
   "id": "d5344486-06e3-463c-a780-08436e687807",
   "name": "Nerissa",
